@@ -1,0 +1,15 @@
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\bin\Debug\net6.0\Mastermind.exe
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\bin\Debug\net6.0\Mastermind.deps.json
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\bin\Debug\net6.0\Mastermind.runtimeconfig.json
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\bin\Debug\net6.0\Mastermind.dll
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\bin\Debug\net6.0\Mastermind.pdb
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.csproj.AssemblyReference.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.GeneratedMSBuildEditorConfig.editorconfig
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.AssemblyInfoInputs.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.AssemblyInfo.cs
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.csproj.CoreCompileInputs.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.dll
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\refint\Mastermind.dll
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.pdb
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\Mastermind.genruntimeconfig.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Mastermind\obj\Debug\net6.0\ref\Mastermind.dll
