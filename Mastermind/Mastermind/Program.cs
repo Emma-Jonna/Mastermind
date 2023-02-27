@@ -33,6 +33,7 @@
 
             }
 
+            Console.Clear();
 
             printColorChart();
 
@@ -40,26 +41,25 @@
 
             Console.WriteLine();
 
-            // prints out the answer
-            /*for (int i = 0; i < answerColors.Length; i++)
-            {
-                Console.WriteLine(answerColors[i]);
-
-            }*/
-
             int round = 0;
 
             while (true)
             {
-                Console.WriteLine(round + 1);
                 if (round > 7)
                 {
+                    Console.Clear();
                     PrintTitle(Titles("gameOverTitle"), 12);
                     break;
                 }
 
+                Console.WriteLine("Round: " + (round + 1));
+
                 Console.WriteLine("Please enter four colors like the example, CRMY");
                 string userCollorGuess = Console.ReadLine();
+
+                Console.Clear();
+
+                printColorChart();
 
                 userCollorGuess = userCollorGuess.ToUpper();
 
@@ -90,23 +90,43 @@
 
                 }
 
+                int correctColorRightPlace = 0;
+                int correctColorWrongPlace = 0;
+
                 for (int i = 0; i < userGuesses[round].Length; i++)
                 {
+                    int colorCode = GetCorrectConsoleColor(userGuesses[round][i], colorChartColorCodes, colorChart);
+                    Console.ForegroundColor = (ConsoleColor)(colorCode);
+                    Console.Write("User guess: " + userGuesses[round][i]);
 
+                    colorCode = GetCorrectConsoleColor(answerColors[i], colorChartColorCodes, colorChart);
+                    Console.ForegroundColor = (ConsoleColor)(colorCode);
+                    Console.Write("Correct answer: " + answerColors[i]);
+                    Console.WriteLine();
+
+                    if (userGuesses[round][i] == answerColors[i])
+                    {
+                        correctColorRightPlace++;
+                    }
+                    else if(userGuesses[round].Contains(answerColors[i]) && userGuesses[round][i] != answerColors[i])
+                    {
+                        correctColorWrongPlace++;
+                    }
                 }
-                    Console.WriteLine(userGuesses[round]);
 
+                Console.ResetColor();
+                Console.WriteLine("Correct Colors: " + correctColorRightPlace);
+                Console.WriteLine("Correct Colors but in wrong place: " + correctColorWrongPlace);
+                Console.WriteLine();
 
-                
+                if (correctColorRightPlace == 4)
+                {
+                    Console.Clear();
+                    PrintTitle(Titles("gameWinTitle"), 10);
+                    break;
+                }
 
-
-
-                PrintTitle(Titles("gameWinTitle"), 10);
-
-                round++;               
-
-
-
+                round++;
 
                 /*Console.WriteLine($"1.  [{userCollorGuess[0]}][{userCollorGuess[1]}][{userCollorGuess[2]}][{userCollorGuess[3]}]");
                 Console.WriteLine("2.  [ ][ ][ ][ ]");
@@ -238,6 +258,19 @@
                     }
                 }
                 return matches;
+            }
+
+            int GetCorrectConsoleColor(char letter, int[] colorCodes, string[] colorChart)
+            {
+                for (int i = 0; i < colorChart.Length; i++)
+                {
+                    if (letter == colorChart[i][0])
+                    {
+                        return colorCodes[i];
+                    }
+                }
+
+                return 15;
             }
         }
     }
