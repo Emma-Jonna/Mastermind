@@ -136,7 +136,7 @@
                 if (correctColorRightPlace == 4)
                 {
                     Console.Clear();
-                    PrintTitle(Titles("gameWinTitle"), 10);
+                    //PrintTitle(Titles("gameWinTitle"), 10);
                     break;
                 }
 
@@ -144,6 +144,8 @@
             }
 
             PlayAgainMenu();
+
+
 
 
             string[] Titles(string titleName)
@@ -281,13 +283,38 @@
 
                 int menuOptionIndex = 0;
 
+
+
                 while (true)
                 {
+                    PrintTitle(Titles("gameWinTitle"), 10);
 
-                    string keyPressed = Console.ReadLine();
-                    Console.ReadKey();
+                    Console.CursorVisible = false;
 
-                    if (keyPressed == "left")
+                    
+
+                    for (int i = 0; i < menuOptions.Length; i++)
+                    {
+                        if (menuOptionIndex == 0)
+                        {
+                            Console.Write($"    {menuOptions[i]} <--");
+                            menuOptionIndex++;
+                        }
+                        else if (menuOptionIndex == 1)
+                        {
+                            Console.Write(menuOptions[i]);
+                            menuOptionIndex--;
+                        }
+
+                        //Console.Write("           ");
+                        //Console.WriteLine();
+                    }
+
+                    var keyPressed = Console.ReadKey();
+                    Console.Clear();
+
+
+                    if (keyPressed.Key == ConsoleKey.LeftArrow)
                     {
                         if (menuOptionIndex == 0)
                         {
@@ -298,7 +325,7 @@
                             menuOptionIndex--;
                         }
                     }
-                    if (keyPressed == "right")
+                    if (keyPressed.Key == ConsoleKey.RightArrow)
                     {
                         if (menuOptionIndex == 1)
                         {
@@ -307,20 +334,6 @@
                         else
                         {
                             menuOptionIndex++;
-                        }
-                    }
-
-                    for (int i = 0; i < menuOptions.Length; i++)
-                    {
-                        if (menuOptionIndex == 0)
-                        {
-                            Console.WriteLine($"    {menuOptions[i]} <--");
-                            menuOptionIndex++;
-                        }
-                        else if (menuOptionIndex == 1)
-                        {
-                            Console.WriteLine(menuOptions[i]);
-                            menuOptionIndex--;
                         }
                     }
                 }
