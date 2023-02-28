@@ -57,10 +57,6 @@
                 Console.WriteLine("Please enter four colors like the example, CRMY");
                 string userCollorGuess = Console.ReadLine();
 
-                Console.Clear();
-
-                printColorChart();
-
                 userCollorGuess = userCollorGuess.ToUpper();
 
                 if (userCollorGuess == "")
@@ -82,11 +78,29 @@
                     continue;
                 }
 
+                Console.Clear();
+                printColorChart();
+
                 userGuesses[round] = userCollorGuess;
 
                 for (int i = 0; i < userGuesses.Length; i++)
                 {
-                    Console.WriteLine(userGuesses[i]);
+                    if (userGuesses[i] is null)
+                    {
+                        Console.WriteLine("[ ][ ][ ][ ]");
+                    }
+                    else
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            int colorCode = GetCorrectConsoleColor(userGuesses[i][j], colorChartColorCodes, colorChart);
+                            Console.ForegroundColor = (ConsoleColor)(colorCode);
+                            Console.Write($"[{userGuesses[i][j]}]");
+                            Console.ResetColor();
+                        }
+
+                        Console.WriteLine();
+                    }
 
                 }
 
@@ -108,7 +122,7 @@
                     {
                         correctColorRightPlace++;
                     }
-                    else if(userGuesses[round].Contains(answerColors[i]) && userGuesses[round][i] != answerColors[i])
+                    else if (userGuesses[round].Contains(answerColors[i]) && userGuesses[round][i] != answerColors[i])
                     {
                         correctColorWrongPlace++;
                     }
@@ -127,23 +141,11 @@
                 }
 
                 round++;
-
-                /*Console.WriteLine($"1.  [{userCollorGuess[0]}][{userCollorGuess[1]}][{userCollorGuess[2]}][{userCollorGuess[3]}]");
-                Console.WriteLine("2.  [ ][ ][ ][ ]");
-                Console.WriteLine("3.  [ ][ ][ ][ ]");
-                Console.WriteLine("4.  [ ][ ][ ][ ]");
-                Console.WriteLine("5.  [ ][ ][ ][ ]");
-                Console.WriteLine("6.  [ ][ ][ ][ ]");
-                Console.WriteLine("7.  [ ][ ][ ][ ]");
-                Console.WriteLine("8.  [ ][ ][ ][ ]");
-                Console.WriteLine("9.  [ ][ ][ ][ ]");
-                Console.WriteLine("10. [ ][ ][ ][ ]");
-                Console.WriteLine("11. [ ][ ][ ][ ]");
-                Console.WriteLine("12. [ ][ ][ ][ ]");
-                Console.WriteLine($"    [{answerColors[0]}][{answerColors[1]}][{answerColors[2]}][{answerColors[3]}]");
-
-                Console.WriteLine(userCollorGuess);*/
             }
+
+            PlayAgainMenu();
+
+
             string[] Titles(string titleName)
             {
                 string[] gameStartTitle = {
@@ -271,6 +273,59 @@
                 }
 
                 return 15;
+            }
+
+            bool PlayAgainMenu()
+            {
+                string[] menuOptions = { "Play Again", "Return To Start" };
+
+                int menuOptionIndex = 0;
+
+                while (true)
+                {
+
+                    string keyPressed = Console.ReadLine();
+                    Console.ReadKey();
+
+                    if (keyPressed == "left")
+                    {
+                        if (menuOptionIndex == 0)
+                        {
+                            menuOptionIndex++;
+                        }
+                        else
+                        {
+                            menuOptionIndex--;
+                        }
+                    }
+                    if (keyPressed == "right")
+                    {
+                        if (menuOptionIndex == 1)
+                        {
+                            menuOptionIndex--;
+                        }
+                        else
+                        {
+                            menuOptionIndex++;
+                        }
+                    }
+
+                    for (int i = 0; i < menuOptions.Length; i++)
+                    {
+                        if (menuOptionIndex == 0)
+                        {
+                            Console.WriteLine($"    {menuOptions[i]} <--");
+                            menuOptionIndex++;
+                        }
+                        else if (menuOptionIndex == 1)
+                        {
+                            Console.WriteLine(menuOptions[i]);
+                            menuOptionIndex--;
+                        }
+                    }
+                }
+
+                return true;
             }
         }
     }
