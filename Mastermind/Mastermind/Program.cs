@@ -1,4 +1,6 @@
-﻿namespace Mastermind
+﻿using System.ComponentModel;
+
+namespace Mastermind
 {
     internal class Program
     {
@@ -18,20 +20,21 @@
 
             string[] userGuesses = new string[8];
 
-            PrintTitle(Titles("gameStartTitle"), 15);
-            Console.WriteLine("[Press Enter To Start]");
-
-            string pressedKey = Console.ReadKey().Key.ToString();
-
-            if (pressedKey == "Enter")
+            while (true)
             {
-                Console.WriteLine("You pressed enter!");
-            }
-            else
-            {
-                Console.WriteLine("You did not press enter!");
+                Console.Clear();
+                PrintTitle(Titles("gameStartTitle"), 15);
+                Console.WriteLine("[Press Enter To Start]");
 
+                var pressedKey = Console.ReadKey();
+
+                if (pressedKey.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("You pressed enter!");
+                    break;
+                }
             }
+
 
             Console.Clear();
 
@@ -42,13 +45,15 @@
             Console.WriteLine();
 
             int round = 0;
+            bool win = false;
 
             while (true)
             {
                 if (round > 7)
                 {
                     Console.Clear();
-                    PrintTitle(Titles("gameOverTitle"), 12);
+                    //PrintTitle(Titles("gameOverTitle"), 12);
+                    //PlayAgainMenu("gameOverTitle", 12);
                     break;
                 }
 
@@ -101,7 +106,6 @@
 
                         Console.WriteLine();
                     }
-
                 }
 
                 int correctColorRightPlace = 0;
@@ -137,13 +141,22 @@
                 {
                     Console.Clear();
                     //PrintTitle(Titles("gameWinTitle"), 10);
+                    win = true;
                     break;
                 }
 
                 round++;
             }
 
-            PlayAgainMenu();
+            if (!win)
+            {
+                PlayAgainMenu("gameOverTitle", 12);
+            }
+
+            PlayAgainMenu("gameWinTitle", 10);
+
+
+
 
 
 
@@ -277,7 +290,7 @@
                 return 15;
             }
 
-            bool PlayAgainMenu()
+            bool PlayAgainMenu(string title, int colorCode)
             {
                 string[] menuOptions = { "Play Again", "Return To Start" };
 
@@ -287,34 +300,31 @@
 
                 while (true)
                 {
-                    PrintTitle(Titles("gameWinTitle"), 10);
+                    PrintTitle(Titles(title), colorCode);
 
                     Console.CursorVisible = false;
 
-                    
+
 
                     for (int i = 0; i < menuOptions.Length; i++)
                     {
                         if (menuOptionIndex == 0)
                         {
-                            Console.Write($"    {menuOptions[i]} <--");
+                            Console.WriteLine($"    --> {menuOptions[i]}");
                             menuOptionIndex++;
                         }
                         else if (menuOptionIndex == 1)
                         {
-                            Console.Write(menuOptions[i]);
+                            Console.WriteLine(menuOptions[i]);
                             menuOptionIndex--;
                         }
-
-                        //Console.Write("           ");
-                        //Console.WriteLine();
                     }
 
                     var keyPressed = Console.ReadKey();
                     Console.Clear();
 
 
-                    if (keyPressed.Key == ConsoleKey.LeftArrow)
+                    if (keyPressed.Key == ConsoleKey.DownArrow || keyPressed.Key == ConsoleKey.RightArrow)
                     {
                         if (menuOptionIndex == 0)
                         {
@@ -325,7 +335,7 @@
                             menuOptionIndex--;
                         }
                     }
-                    if (keyPressed.Key == ConsoleKey.RightArrow)
+                    if (keyPressed.Key == ConsoleKey.UpArrow || keyPressed.Key == ConsoleKey.LeftArrow)
                     {
                         if (menuOptionIndex == 1)
                         {
@@ -336,9 +346,18 @@
                             menuOptionIndex++;
                         }
                     }
+                    if (keyPressed.Key == ConsoleKey.Enter)
+                    {
+                        break;
+                    }                    
                 }
 
-                return true;
+                if (menuOptionIndex == 0)
+                {
+                    return true;
+                }
+
+                return false;
             }
         }
     }
