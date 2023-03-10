@@ -1,0 +1,15 @@
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\bin\Debug\net6.0\Testing.exe
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\bin\Debug\net6.0\Testing.deps.json
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\bin\Debug\net6.0\Testing.runtimeconfig.json
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\bin\Debug\net6.0\Testing.dll
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\bin\Debug\net6.0\Testing.pdb
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.csproj.AssemblyReference.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.GeneratedMSBuildEditorConfig.editorconfig
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.AssemblyInfoInputs.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.AssemblyInfo.cs
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.csproj.CoreCompileInputs.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.dll
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\refint\Testing.dll
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.pdb
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\Testing.genruntimeconfig.cache
+C:\Source\Yrgo\WU22\Inlämningar\Mastermind\Mastermind\Mastermind\Testing\obj\Debug\net6.0\ref\Testing.dll
