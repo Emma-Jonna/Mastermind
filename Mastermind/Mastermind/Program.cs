@@ -25,7 +25,7 @@ namespace Mastermind
                 CurrentRound = 0,
                 ColorChart = colorChart,
                 ColorchartConsoleColors = colorChartColorCodes
-            };         
+            };
 
             while (true)
             {
@@ -118,9 +118,13 @@ namespace Mastermind
                     PrintColorChart(ColorChart, ColorchartConsoleColors);
                     Console.WriteLine();
 
-                    PrintGameBoard();
+                    Console.ResetColor();
+                    Console.SetCursorPosition(14, 6);
+                    Console.WriteLine("Correct Colors | Correct Colors but in wrong place");
 
                     CompareUserColorsWithCorrectAnswer();
+
+                    PrintGameBoard();
 
                     if (CorrectColorsInRightPlace == 4)
                     {
@@ -217,7 +221,6 @@ namespace Mastermind
                 {
                     int rndColor = RandomConsoleColorNumber(0, 5);
                     Console.ForegroundColor = (ConsoleColor)(colorChartColorCodes[rndColor]);
-                    Console.Write(colorChart[rndColor][0]);
                     answerColors[i] = colorChart[rndColor][0];
 
                 }
@@ -349,10 +352,7 @@ namespace Mastermind
             }
 
             public void PrintGameBoard()
-            {
-                // The guess from the user from this round is stored
-                AllUserGuesses[CurrentRound] = UserGuess;
-
+            {                               
                 for (int i = 0; i < AllUserGuesses.Length; i++)
                 {
                     if (AllUserGuesses[i] is null)
@@ -368,58 +368,71 @@ namespace Mastermind
                             Console.Write($"[{AllUserGuesses[i][j]}]");
                             Console.ResetColor();
                         }
-                        Console.WriteLine();
+                        
+                        Console.WriteLine("   " + CorrectPlace[i] + " | " + WrongPlace[i]);
                     }
                 }
+                Console.WriteLine();
             }
 
             public void CompareUserColorsWithCorrectAnswer()
-            {
+            {                
+                // The guess from the user from this round is stored 
+                AllUserGuesses[CurrentRound] = UserGuess;
+
                 CorrectColorsInWrongPlace = 0;
                 CorrectColorsInRightPlace = 0;
 
-                char[] temp = new char[4];
+                //char[] userTemp = new char[4];
+                //char[] answerTemp = CorrectColors;
+
+                var userTemp = new List<char>();
+                var answerTemp = new List<char>();
 
                 for (int i = 0; i < AllUserGuesses[CurrentRound].Length; i++)
                 {
-                    temp[i] = AllUserGuesses[CurrentRound][i];
+                    userTemp.Add(AllUserGuesses[CurrentRound][i]);
+                }
+                for (int i = 0; i < AllUserGuesses[CurrentRound].Length; i++)
+                {
+                    answerTemp.Add(CorrectColors[i]);
                 }
 
-                Console.Write($" Temp: ");
-                foreach (var item in temp)
+                Console.Write("Correct answer:  ");
+                foreach (var item in answerTemp)
                 {
                     Console.Write(item);
                 }
 
-                for (int i = 0; i < AllUserGuesses[CurrentRound].Length; i++)
+                Console.Write($" User guess: ");
+                foreach (var item in userTemp)
                 {
-                    
+                    Console.Write(item);
+                }
+                Console.WriteLine();
 
 
-                    int colorCode = GetCorrectConsoleColor(AllUserGuesses[CurrentRound][i], ColorchartConsoleColors, ColorChart);
-                    Console.ForegroundColor = (ConsoleColor)(colorCode);
-                    Console.Write("User guess: " + AllUserGuesses[CurrentRound][i]);
-
-                    colorCode = GetCorrectConsoleColor(CorrectColors[i], ColorchartConsoleColors, ColorChart);
-                    Console.ForegroundColor = (ConsoleColor)(colorCode);
-                    Console.Write("Correct answer: " + CorrectColors[i]);
-                    Console.WriteLine();
-
-                    if (AllUserGuesses[CurrentRound][i] == CorrectColors[i])
+                for (int i = 0; i < answerTemp.Count; i++)
+                {
+                    if (userTemp[i] == answerTemp[i])
                     {
                         CorrectColorsInRightPlace++;
+                        //answerTemp.RemoveAt(answerTemp[i]);
                     }
-                    else if (AllUserGuesses[CurrentRound].Contains(CorrectColors[i]) && AllUserGuesses[CurrentRound][i] != CorrectColors[i])
+                    /*else if (answerTemp.Contains(userTemp[i]))
                     {
                         CorrectColorsInWrongPlace++;
-                    }
+                        answerTemp[i] = 'e';
+                    }*/
                 }
 
-                Console.ResetColor();
-                Console.WriteLine();
-                Console.WriteLine("Correct Colors: " + CorrectColorsInRightPlace);
-                Console.WriteLine("Correct Colors but in wrong place: " + CorrectColorsInWrongPlace);
-                Console.WriteLine();
+                /*foreach (var item in answerTemp)
+                {
+                    Console.Write(item);
+                }*/
+
+                WrongPlace[CurrentRound] = CorrectColorsInWrongPlace;
+                CorrectPlace[CurrentRound] = CorrectColorsInRightPlace;
             }
         }
     }
