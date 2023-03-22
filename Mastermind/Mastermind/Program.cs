@@ -120,7 +120,7 @@ namespace Mastermind
 
                     Console.ResetColor();
                     Console.SetCursorPosition(14, 6);
-                    Console.WriteLine("Correct Colors | Correct Colors but in wrong place");
+                    Console.WriteLine("Correct Colors | Correct Colors but in wrong place");                    
 
                     CompareUserColorsWithCorrectAnswer();
 
@@ -219,7 +219,7 @@ namespace Mastermind
 
                 for (int i = 0; i < 4; i++)
                 {
-                    int rndColor = RandomConsoleColorNumber(0, 5);
+                    int rndColor = RandomConsoleColorNumber(0, 6);
                     Console.ForegroundColor = (ConsoleColor)(colorChartColorCodes[rndColor]);
                     answerColors[i] = colorChart[rndColor][0];
 
@@ -383,53 +383,47 @@ namespace Mastermind
                 CorrectColorsInWrongPlace = 0;
                 CorrectColorsInRightPlace = 0;
 
-                //char[] userTemp = new char[4];
-                //char[] answerTemp = CorrectColors;
-
-                var userTemp = new List<char>();
-                var answerTemp = new List<char>();
+                char[] userTemp = new char[4];
+                char[] answerTemp = new char[4];
 
                 for (int i = 0; i < AllUserGuesses[CurrentRound].Length; i++)
                 {
-                    userTemp.Add(AllUserGuesses[CurrentRound][i]);
-                }
-                for (int i = 0; i < AllUserGuesses[CurrentRound].Length; i++)
-                {
-                    answerTemp.Add(CorrectColors[i]);
+                    userTemp[i] = AllUserGuesses[CurrentRound][i];
+                    answerTemp[i] = CorrectColors[i];
                 }
 
-                Console.Write("Correct answer:  ");
-                foreach (var item in answerTemp)
-                {
-                    Console.Write(item);
-                }
-
-                Console.Write($" User guess: ");
-                foreach (var item in userTemp)
-                {
-                    Console.Write(item);
-                }
-                Console.WriteLine();
-
-
-                for (int i = 0; i < answerTemp.Count; i++)
+                // for correct colors
+                for (int i = 0; i < answerTemp.Length; i++)
                 {
                     if (userTemp[i] == answerTemp[i])
                     {
+                        answerTemp[i] = '-';
+                        userTemp[i] = '*';
                         CorrectColorsInRightPlace++;
-                        //answerTemp.RemoveAt(answerTemp[i]);
-                    }
-                    /*else if (answerTemp.Contains(userTemp[i]))
-                    {
-                        CorrectColorsInWrongPlace++;
-                        answerTemp[i] = 'e';
-                    }*/
+                    }                    
                 }
 
-                /*foreach (var item in answerTemp)
+                // for colors in the wrong place
+                for (int i = 0; i < answerTemp.Length; i++)
+                {
+                    for (int j = 0; j < userTemp.Length; j++)
+                    {
+                        if (answerTemp[i] == userTemp[j] && answerTemp[i] != '-')
+                        {
+                            answerTemp[i] = '-';
+                            userTemp[j] = '*';
+                            CorrectColorsInWrongPlace++;
+                        }
+                    }                   
+                }
+
+                Console.Write("Correct answer:  ");
+                foreach (var item in CorrectColors)
                 {
                     Console.Write(item);
-                }*/
+                }
+                
+                Console.WriteLine();              
 
                 WrongPlace[CurrentRound] = CorrectColorsInWrongPlace;
                 CorrectPlace[CurrentRound] = CorrectColorsInRightPlace;
