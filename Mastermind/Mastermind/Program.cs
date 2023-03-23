@@ -120,7 +120,7 @@ namespace Mastermind
 
                     Console.ResetColor();
                     Console.SetCursorPosition(14, 6);
-                    Console.WriteLine("Correct Colors | Correct Colors but in wrong place");                    
+                    Console.WriteLine("Correct Colors | Correct Colors but in wrong place");
 
                     CompareUserColorsWithCorrectAnswer();
 
@@ -185,21 +185,31 @@ namespace Mastermind
             }
 
             public void PrintTitle(string[] title, int color)
-            {
+            {                
                 if (color == 15)
                 {
+                    int x = 10;
+                    int y = 8;
+
                     for (int i = 0; i < title.Length; i++)
                     {
+                        Console.SetCursorPosition(x, y);
                         Console.ForegroundColor = (ConsoleColor)(RandomConsoleColorNumber(1, 16));
                         Console.WriteLine(title[i]);
+                        y++;
                     }
                 }
                 if (color < 15)
                 {
+                    int x = 15;
+                    int y = 8;
+
                     for (int i = 0; i < title.Length; i++)
                     {
+                        Console.SetCursorPosition(x, y);
                         Console.ForegroundColor = (ConsoleColor)(color);
                         Console.WriteLine(title[i]);
+                        y++;
                     }
                 }
             }
@@ -274,12 +284,18 @@ namespace Mastermind
                 {
                     PrintTitle(Titles(title), colorCode);
                     Console.CursorVisible = false;
+                    int x = 40;
+                    int y = 17;
 
                     for (int i = 0; i < menuOptions.Length; i++)
                     {
+                        Console.SetCursorPosition(x, y);
                         if (menuOptionIndex == 0)
                         {
-                            Console.WriteLine($"    --> {menuOptions[i]}");
+                            Console.SetCursorPosition(45, y);
+                            Console.Write(menuOptions[i]);
+                            Console.SetCursorPosition(35, y);
+                            Console.Write("-->  ");                            
                             menuOptionIndex++;
                         }
                         else if (menuOptionIndex == 1)
@@ -287,6 +303,7 @@ namespace Mastermind
                             Console.WriteLine(menuOptions[i]);
                             menuOptionIndex--;
                         }
+                        y++;
                     }
 
                     var keyPressed = Console.ReadKey();
@@ -332,8 +349,10 @@ namespace Mastermind
             {
                 while (true)
                 {
+
                     Console.Clear();
                     PrintTitle(Titles("start"), 15);
+                    Console.SetCursorPosition(45, 18);
                     Console.WriteLine("[Press Enter To Start]");
                     Console.CursorVisible = false;
 
@@ -352,9 +371,14 @@ namespace Mastermind
             }
 
             public void PrintGameBoard()
-            {                               
+            {
+                int x = 12;
+                int y = 8;
+
                 for (int i = 0; i < AllUserGuesses.Length; i++)
                 {
+                    Console.SetCursorPosition(x, y);
+
                     if (AllUserGuesses[i] is null)
                     {
                         Console.WriteLine("[ ][ ][ ][ ]");
@@ -368,15 +392,16 @@ namespace Mastermind
                             Console.Write($"[{AllUserGuesses[i][j]}]");
                             Console.ResetColor();
                         }
-                        
+
                         Console.WriteLine("   " + CorrectPlace[i] + " | " + WrongPlace[i]);
                     }
+                    y++;
                 }
                 Console.WriteLine();
             }
 
             public void CompareUserColorsWithCorrectAnswer()
-            {                
+            {
                 // The guess from the user from this round is stored 
                 AllUserGuesses[CurrentRound] = UserGuess;
 
@@ -400,7 +425,7 @@ namespace Mastermind
                         answerTemp[i] = '-';
                         userTemp[i] = '*';
                         CorrectColorsInRightPlace++;
-                    }                    
+                    }
                 }
 
                 // for colors in the wrong place
@@ -414,7 +439,7 @@ namespace Mastermind
                             userTemp[j] = '*';
                             CorrectColorsInWrongPlace++;
                         }
-                    }                   
+                    }
                 }
 
                 Console.Write("Correct answer:  ");
@@ -422,8 +447,8 @@ namespace Mastermind
                 {
                     Console.Write(item);
                 }
-                
-                Console.WriteLine();              
+
+                Console.WriteLine();
 
                 WrongPlace[CurrentRound] = CorrectColorsInWrongPlace;
                 CorrectPlace[CurrentRound] = CorrectColorsInRightPlace;
