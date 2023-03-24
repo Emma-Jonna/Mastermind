@@ -137,6 +137,7 @@ namespace Mastermind
 
                 Console.Clear();
             }
+
             public string[] Titles(string title)
             {
                 string[] gameStartTitle = {
